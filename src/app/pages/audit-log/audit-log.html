@@ -1,0 +1,90 @@
+<div class="audit-page">
+
+  <app-page-header title="Audit Log" subtitle="Complete record of all system activity">
+    <button class="btn-icon-text" (click)="fetchLogs()">
+      <tabler-icon [icon]="IconReload" [size]="16"></tabler-icon>
+      Refresh
+    </button>
+  </app-page-header>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="search-wrap">
+      <span class="search-icon">
+        <tabler-icon [icon]="IconSearch" [size]="15"></tabler-icon>
+      </span>
+      <input
+        class="search-input"
+        type="text"
+        placeholder="Search by action, resource, details..."
+        [value]="searchQuery()"
+        (input)="onSearch($any($event.target).value)"
+      />
+    </div>
+
+    <select class="filter-select" [value]="selectedAction()" (change)="onActionFilter($any($event.target).value)">
+      <option value="all">All Actions</option>
+      @for (a of actions.slice(1); track a) {
+        <option [value]="a">{{ a }}</option>
+      }
+    </select>
+
+    <span class="result-count">{{ filtered().length }} entries</span>
+  </div>
+
+  <!-- Table -->
+  <div class="table-card">
+    <div class="table-scroll">
+      <table class="audit-table">
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>User ID</th>
+            <th>Action</th>
+            <th>Resource Type</th>
+            <th>Resource ID</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (isLoading()) {
+            <tr>
+              <td colspan="6" class="empty-state">Loading audit logs...</td>
+            </tr>
+          } @else if (paginated().length === 0) {
+            <tr>
+              <td colspan="6" class="empty-state">No entries found</td>
+            </tr>
+          } @else {
+            @for (entry of paginated(); track entry.auditId) {
+              <tr>
+                <td class="ts-cell font-mono">{{ formatDate(entry.timestamp) }}</td>
+                <td class="font-mono" style="font-size:11px; color: var(--text-muted)">
+                  {{ entry.userId ? entry.userId.substring(0, 8) + '...' : 'System' }}
+                </td>
+                <td>
+                  <span class="action-badge {{ getActionColor(entry.action) }}">
+                    {{ entry.action }}
+                  </span>
+                </td>
+                <td>
+                  <span class="entity-text">{{ entry.resourceType }}</span>
+                </td>
+                <td class="font-mono" style="font-size:11px">{{ entry.resourceID }}</td>
+                <td class="details-cell">{{ entry.detailsJSON }}</td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <app-pagination
+      [currentPage]="currentPage()"
+      [totalPages]="totalPages()"
+      [totalItems]="filtered().length"
+      [pageSize]="pageSize"
+      (pageChange)="currentPage.set($event)" />
+  </div>
+
+</div>

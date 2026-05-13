@@ -1,0 +1,23 @@
+<div class="pagination" *ngIf="totalPages() > 0">
+  <span class="pagination__info">
+    {{ start() }}–{{ end() }} of {{ totalItems() }}
+  </span>
+
+  <div class="pagination__controls">
+    <button class="pagination__btn"
+            [disabled]="currentPage() === 1"
+            (click)="prev()">
+      <span aria-hidden="true">←</span>
+    </button>
+
+    <span class="pagination__pages">
+      {{ currentPage() }} / {{ totalPages() }}
+    </span>
+
+    <button class="pagination__btn"
+            [disabled]="currentPage() === totalPages()"
+            (click)="next()">
+      <span aria-hidden="true">→</span>
+    </button>
+  </div>
+</div>

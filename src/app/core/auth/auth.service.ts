@@ -2,6 +2,7 @@ import{Injectable,signal} from '@angular/core';
 import{HttpClient} from '@angular/common/http';
 import{Router} from '@angular/router';
 import{tap} from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 export type UserRole =
   | 'Planner' | 'Supervisor' | 'Operator' | 'Quality'
@@ -26,7 +27,7 @@ interface LoginResponse{
     providedIn: 'root'
 })
 export class AuthService{
-    private readonly API = 'http://localhost:5000/manuplan/iam/auth';
+    private readonly API = `${environment.api.iam}/auth`;
     private currentUser = signal<AuthUser | null>(
         this.loadFromStorage()
     );
@@ -47,7 +48,7 @@ export class AuthService{
 
       const userId = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
       const emailVal = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
-      const role = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/role'];
+      const role = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
 
       // Pehle basic info set karo token ke saath
       const tempUser: AuthUser = {
@@ -62,15 +63,22 @@ export class AuthService{
 
       // Phir real name fetch karo
       this.http.get<any>(
-        `http://localhost:5000/manuplan/iam/users/details/${userId}`,
+        `${environment.api.iam}/users/details/${userId}`,
         { headers: { Authorization: `Bearer ${token}` } }
-      ).subscribe(res => {
-        const fullUser: AuthUser = {
-          ...tempUser,
-          name: res.data.name,
-          initials: res.data.name.split(' ').map((n: string) => n[0]).join('').toUpperCase().substring(0, 2)
-        };
-        this.setUser(fullUser);
+      ).subscribe({
+        next: res => {
+          if (res?.data?.name) {
+            const fullUser: AuthUser = {
+              ...tempUser,
+              name: res.data.name,
+              initials: res.data.name.split(' ').map((n: string) => n[0]).join('').toUpperCase().substring(0, 2)
+            };
+            this.setUser(fullUser);
+          }
+        },
+        error: () => {
+          // Name fetch fail — tempUser (email as name) use karo, login still works
+        }
       });
 
       this.router.navigate(['/dashboard']);
@@ -115,9 +123,27 @@ export class AuthService{
   private loadFromStorage(): AuthUser | null {
     try {
       const raw = localStorage.getItem('mp-user');
-      return raw ? JSON.parse(raw) : null;
+      if (!raw) return null;
+      const user: AuthUser = JSON.parse(raw);
+      // Token expiry check
+      if (user?.token && this.isTokenExpired(user.token)) {
+        localStorage.removeItem('mp-user');
+        return null;
+      }
+      return user;
     } catch {
       return null;
+    }
+  }
+
+  private isTokenExpired(token: string): boolean {
+    try {
+      const decoded = this.decodeJwt(token);
+      const exp = decoded['exp'];
+      if (!exp) return false;
+      return Date.now() >= exp * 1000;
+    } catch {
+      return true;
     }
   }
 }

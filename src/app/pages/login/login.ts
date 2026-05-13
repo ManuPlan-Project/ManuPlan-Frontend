@@ -47,7 +47,7 @@ export class Login {
 
   onSubmit() {
     if (!this.email() || !this.password()) {
-      this.errorMsg.set('Email aur password dono chahiye.');
+      this.errorMsg.set('Email and password are required.');
       return;
     }
 

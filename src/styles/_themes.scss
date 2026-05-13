@@ -10,6 +10,8 @@
   --border-accent:    rgba(99, 91, 255, 0.30);
   --bg-topbar:        rgba(7, 9, 18, 0.70);
   --bg-sidebar:       linear-gradient(180deg, #0D101E, #070912);
+  --bg-hover:         rgba(99, 91, 255, 0.08);
+  --accent:           #635BFF;
 
   --text-primary:     #FFFFFF;
   --text-secondary:   #CBD5E1;
@@ -39,6 +41,8 @@ body.light {
   --border-accent:    rgba(99, 91, 255, 0.40);
   --bg-topbar:        rgba(255, 255, 255, 0.85);
   --bg-sidebar:       linear-gradient(180deg, #FFFFFF, #FAFAFA);
+  --bg-hover:         rgba(99, 91, 255, 0.06);
+  --accent:           #635BFF;
 
   --text-primary:     #0F172A;
   --text-secondary:   #334155;

@@ -8,6 +8,8 @@
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(24px);
   gap: 16px;
+  position:relative;
+  z-index: 100;
 }
 
 // LEFT
