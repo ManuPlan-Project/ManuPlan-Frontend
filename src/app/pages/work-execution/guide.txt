@@ -1,0 +1,129 @@
+ManuPlan Frontend — Teammate Guide
+Step 1: Prerequisites Install Karo
+# Node.js v20 LTS install karo (nodejs.org se)
+# Check karo
+node -v   # v20.x.x hona chahiye
+
+# Angular CLI
+npm install -g @angular/cli
+
+# Git
+Step 2: Repo Clone Karo
+git clone https://github.com/ManuPlan-Project/ManuPlan-Frontend-work.git
+cd manuplan-web
+npm install --legacy-peer-deps
+⚠️ --legacy-peer-deps zaroori hai — bina iske error aayega
+
+Step 3: Backend Chalu Karo
+Frontend chalane se pehle yeh backends locally run karo (Visual Studio / dotnet CLI se):
+
+Service	Port
+Gateway	http://localhost:5000
+IAMM	http://localhost:5001
+ProductBOM	http://localhost:5002
+MPSAndMRP	http://localhost:5003
+WorkExecution	http://localhost:5004
+Inventory	http://localhost:5005
+Maintenance	http://localhost:5006
+CapacityPlanning	http://localhost:5007
+QualityManagement	http://localhost:5008
+CSFR	http://localhost:5009
+ReportAndKPI	http://localhost:5010
+Sirf apne module ka backend zaroori hai + Gateway (5000) hamesha chalu rakhna hai
+
+Step 4: Apni Branch Banao
+git checkout main
+git pull origin main
+git checkout -b feature/<tumhara-module>
+
+# Example:
+git checkout -b feature/inventory
+git checkout -b feature/product-bom
+git checkout -b feature/work-execution
+Step 5: Apna Folder Banao
+src/app/pages/ ke andar sirf apna module folder banao:
+
+src/app/pages/inventory/
+├── inventory.component.ts
+├── inventory.component.html
+├── inventory.component.scss
+└── inventory.routes.ts
+Folder names:
+
+Teammate	Folder
+Inventory	pages/inventory/
+ProductBOM	pages/product-bom/
+WorkExecution	pages/work-execution/
+MPS & MRP	pages/mps-mrp/
+Maintenance	pages/maintenance/
+CapacityPlanning	pages/capacity-planning/
+QualityManagement	pages/quality-management/
+CSFR	pages/csfr/
+Report & KPI	pages/report-kpi/
+Step 6: SCSS Rules — Zaroori Hai
+❌ Yeh mat karo:
+
+background: #070912;       /* hardcoded color — NAHI */
+color: #ffffff;            /* hardcoded — NAHI */
+@import 'something';       /* @import deprecated — NAHI */
+✅ Yeh karo:
+
+background: var(--bg-page);
+background: var(--bg-card);
+color: var(--text-primary);
+color: var(--text-secondary);
+border: 1px solid var(--border);
+Available CSS Variables:
+
+Colors:
+--bg-page          → page background
+--bg-card          → card background
+--bg-card-hover    → card hover state
+--bg-input         → input background
+--border           → default border
+--border-accent    → purple accent border
+Text:
+--text-primary     → headings, main text
+--text-secondary   → subtext
+--text-tertiary    → labels
+--text-muted       → placeholders
+--text-accent      → purple accent text
+Brand:
+--brand-primary    → #635BFF (purple)
+--brand-cyan       → #00D4FF
+--brand-green      → #00FFAA
+Status:
+--status-success   → #10B981
+--status-warning   → #FBBF24
+--status-danger    → #EF4444
+Agar tokens chahiye SCSS mein:
+
+@use '../../styles/tokens' as *;  // path adjust karo apne folder se
+// phir use karo:
+padding: $space-lg;
+border-radius: $radius-md;
+Step 7: API Calls Kaise Karo
+Sirf Gateway use karo — direct service port NAHI:
+
+// ✅ Sahi
+http://localhost:5000/inventory/api/...
+
+// ❌ Galat
+http://localhost:5005/api/...
+Step 8: Kya Touch Nahi Karna
+src/app/core/          ← TOUCH MAT KARO
+src/app/layout/        ← TOUCH MAT KARO
+src/styles/            ← TOUCH MAT KARO
+src/styles.scss        ← TOUCH MAT KARO
+angular.json           ← TOUCH MAT KARO
+Step 9: Kaam Khatam Hone Pe Push Karo
+git add src/app/pages/<tumhara-module>/
+git commit -m "feat(inventory): add inventory list page"
+git push origin feature/<tumhara-module>
+Phir GitHub pe Pull Request banao main branch mein.
+
+Step 10: ng serve
+ng serve
+# Browser mein: http://localhost:4200
+Summary — Ek Line Mein
+Clone karo → npm install --legacy-peer-deps → apni branch banao → pages/<apna-module>/ mein kaam karo → CSS variables use karo → Gateway (5000) se APIs hit karo → PR banao.
