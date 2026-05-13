@@ -1,0 +1,50 @@
+<nav class="sidebar">
+
+  <!-- User Card -->
+  <div class="user-card">
+    <div class="user-av">{{ auth.user()?.initials }}</div>
+    <div class="user-info">
+      <p class="user-name">{{ auth.user()?.name }}</p>
+      <p class="user-role">{{ auth.user()?.role }}</p>
+    </div>
+  </div>
+
+  <!-- Nav Items -->
+  <div class="nav-list">
+    @for(item of navItems; track $index) {
+
+      @if(item.section) {
+        <div class="nav-section">{{ item.section }}</div>
+      }
+
+      @if(item.label && item.route) {
+        <a class="nav-item"
+           [routerLink]="item.route"
+           routerLinkActive="active">
+          <tabler-icon [icon]="item.icon" [size]="16" />
+          <span class="nav-label">{{ item.label }}</span>
+          @if(item.badge) {
+            <span class="nav-badge" [class]="'badge-' + item.badgeColor">
+              {{ item.badge }}
+            </span>
+          }
+        </a>
+      }
+
+    }
+  </div>
+
+  <!-- AI Suggestions Card -->
+  <div class="ai-card">
+    <div class="ai-card-title">
+      <tabler-icon [icon]="sparklesIcon" [size]="13" />
+      AI Suggestions
+    </div>
+    <p class="ai-card-desc">3 optimizations available based on this week's runs</p>
+    <button class="ai-card-btn">
+      <tabler-icon [icon]="boltIcon" [size]="13" />
+      Review now
+    </button>
+  </div>
+
+</nav>

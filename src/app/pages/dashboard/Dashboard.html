@@ -1,0 +1,158 @@
+<div class="dashboard">
+
+  <!-- Header -->
+  <div class="dash-head">
+    <div>
+      <div class="dash-greet">{{ today }}</div>
+      <h1 class="dash-title">{{ greeting }}</h1>
+      <div class="dash-sub">
+        <span class="live-badge">Live · 12s ago</span>
+        <span>ManuPlan · All plants</span>
+      </div>
+    </div>
+    <div class="dash-actions">
+      <button class="btn btn-ghost">
+        <tabler-icon [icon]="downloadIcon" [size]="15" />
+        Export
+      </button>
+      <button class="btn btn-primary">
+        <tabler-icon [icon]="userPlusIcon" [size]="15" />
+        Add user
+      </button>
+    </div>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="kpi-grid">
+    @for(kpi of kpis; track kpi.label) {
+      <div class="kpi-card {{ kpi.cls }}">
+        <div class="kpi-head">
+          <span class="kpi-label">{{ kpi.label }}</span>
+          <div class="kpi-icon">
+            <tabler-icon [icon]="kpi.icon" [size]="14" />
+          </div>
+        </div>
+        <div class="kpi-value">{{ kpi.value }}</div>
+        <div class="kpi-delta {{ kpi.trend }}">{{ kpi.delta }}</div>
+      </div>
+    }
+  </div>
+
+  <!-- User Management Table -->
+  <div class="card" style="margin-bottom: 12px;">
+    <div class="card-head">
+      <div>
+        <h3 class="card-title">User management</h3>
+        <p class="card-sub">{{ users().length }} active users</p>
+      </div>
+      <button class="btn btn-primary">
+        <tabler-icon [icon]="userPlusIcon" [size]="14" />
+        Add user
+      </button>
+    </div>
+
+    @if(isLoading()) {
+      <div class="loading">Loading users...</div>
+    } @else {
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(user of users(); track user.userId) {
+            <tr>
+              <td>
+                <div class="user-cell">
+                  <div class="user-av-sm">
+                    {{ user.name.substring(0,2).toUpperCase() }}
+                  </div>
+                  <div>
+                    <div class="user-cell-name">{{ user.name }}</div>
+                    <div class="user-cell-email">{{ user.email }}</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="role-pill">{{ user.role }}</span>
+              </td>
+              <td>
+                <span class="status-pill"
+                  [class.status-active]="user.status === 'Active'"
+                  [class.status-inactive]="user.status === 'Inactive'"
+                  [class.status-suspended]="user.status === 'Suspended'">
+                  {{ user.status }}
+                </span>
+              </td>
+              <td class="mono-text">
+                {{ user.createdAt | date: 'MMM d, y' }}
+              </td>
+              <td>
+                <div class="action-btns">
+                  <button class="action-btn">
+                    <tabler-icon [icon]="editIcon" [size]="14" />
+                  </button>
+                  <button class="action-btn action-btn--danger">
+                    <tabler-icon [icon]="trashIcon" [size]="14" />
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+
+  <!-- Grid -->
+  <div class="content-grid">
+
+    <!-- System Health -->
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <h3 class="card-title">System health</h3>
+          <p class="card-sub">All services</p>
+        </div>
+      </div>
+      <div class="health-list">
+        @for(item of systemHealth; track item.name) {
+          <div class="health-row">
+            <div class="health-left">
+              <span class="health-dot {{ item.color }}"></span>
+              <span class="health-name">{{ item.name }}</span>
+            </div>
+            <span class="health-status {{ item.color }}">
+              {{ item.status }} @if(item.latency) { · {{ item.latency }} }
+            </span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Audit Log -->
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <h3 class="card-title">Audit log · live</h3>
+          <p class="card-sub">Last 4 events</p>
+        </div>
+      </div>
+      <div class="audit-list">
+        @for(log of auditLog; track log.time) {
+          <div class="audit-row">
+            <div class="audit-meta {{ log.color }}">{{ log.time }} · {{ log.type }}</div>
+            <div class="audit-msg">{{ log.msg }}</div>
+          </div>
+        }
+      </div>
+    </div>
+
+  </div>
+
+</div>

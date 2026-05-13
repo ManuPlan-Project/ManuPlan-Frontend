@@ -1,0 +1,59 @@
+<header class="topbar">
+
+  <!-- Left: Logo -->
+  <div class="topbar-left">
+    <div class="logo">
+      <div class="logo-mark"></div>
+      <span class="logo-text">ManuPlan</span>
+      <span class="logo-badge">Plant Alpha</span>
+    </div>
+  </div>
+
+  <!-- Center: Search -->
+  <div class="topbar-search">
+    <tabler-icon class="search-icon" [icon]="searchIcon" [size]="15" />
+    <input class="search-input" placeholder="Search work orders, lots, products..." />
+    <span class="search-shortcut">⌘ K</span>
+  </div>
+
+  <!-- Right: Actions -->
+  <div class="topbar-right">
+
+    <button class="tb-btn">
+      <tabler-icon [icon]="helpIcon" [size]="15" />
+      Help
+    </button>
+
+    <button class="tb-btn">
+      <tabler-icon [icon]="messageIcon" [size]="15" />
+      Messages
+    </button>
+
+    <button class="tb-btn tb-btn--alert">
+      <tabler-icon [icon]="bellIcon" [size]="15" />
+      Alerts
+      <span class="alert-dot"></span>
+    </button>
+
+    <!-- Theme toggle -->
+    <div class="theme-toggle">
+      <button class="theme-opt" [class.active]="themes.mode() === 'light'" (click)="themes.mode() === 'dark' && themes.toggle()">
+        <tabler-icon [icon]="sunIcon" [size]="14" />
+      </button>
+      <button class="theme-opt" [class.active]="themes.mode() === 'dark'" (click)="themes.mode() === 'light' && themes.toggle()">
+        <tabler-icon [icon]="moonIcon" [size]="14" />
+      </button>
+    </div>
+
+    <!-- User Avatar -->
+    <div class="user-avatar">
+      {{ auth.user()?.initials }}
+    </div>
+
+    <!-- Logout -->
+    <button class="tb-btn tb-btn--logout" (click)="logout()">
+      <tabler-icon [icon]="logoutIcon" [size]="15" />
+    </button>
+
+  </div>
+</header>
