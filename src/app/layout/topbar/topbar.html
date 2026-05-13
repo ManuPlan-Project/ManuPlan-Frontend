@@ -1,8 +1,8 @@
-<header class="topbar">
+<header class="topbar d-flex align-items-center justify-content-between">
 
   <!-- Left: Logo -->
-  <div class="topbar-left">
-    <div class="logo">
+  <div class="topbar-left d-flex align-items-center">
+    <div class="logo d-flex align-items-center gap-2">
       <div class="logo-mark"></div>
       <span class="logo-text">ManuPlan</span>
       <span class="logo-badge">Plant Alpha</span>
@@ -10,48 +10,48 @@
   </div>
 
   <!-- Center: Search -->
-  <div class="topbar-search">
-    <tabler-icon class="search-icon" [icon]="searchIcon" [size]="15" />
-    <input class="search-input" placeholder="Search work orders, lots, products..." />
-    <span class="search-shortcut">⌘ K</span>
+  <div class="topbar-search position-relative flex-grow-1 mx-4" style="max-width:380px">
+    <tabler-icon class="search-icon position-absolute" [icon]="searchIcon" [size]="15" />
+    <input class="search-input w-100" placeholder="Search work orders, lots, products..." />
+    <span class="search-shortcut position-absolute">⌘ K</span>
   </div>
 
   <!-- Right: Actions -->
-  <div class="topbar-right">
+  <div class="topbar-right d-flex align-items-center gap-2">
 
-    <button class="tb-btn">
+    <button class="tb-btn d-inline-flex align-items-center gap-2">
       <tabler-icon [icon]="helpIcon" [size]="15" />
       Help
     </button>
 
-    <button class="tb-btn">
+    <button class="tb-btn d-inline-flex align-items-center gap-2">
       <tabler-icon [icon]="messageIcon" [size]="15" />
       Messages
     </button>
 
-    <button class="tb-btn tb-btn--alert">
+    <button class="tb-btn tb-btn--alert d-inline-flex align-items-center gap-2 position-relative">
       <tabler-icon [icon]="bellIcon" [size]="15" />
       Alerts
-      <span class="alert-dot"></span>
+      <span class="alert-dot position-absolute"></span>
     </button>
 
     <!-- Theme toggle -->
-    <div class="theme-toggle">
-      <button class="theme-opt" [class.active]="themes.mode() === 'light'" (click)="themes.mode() === 'dark' && themes.toggle()">
+    <div class="theme-toggle d-flex align-items-center gap-1">
+      <button class="theme-opt d-flex align-items-center justify-content-center" [class.active]="themes.mode() === 'light'" (click)="themes.mode() === 'dark' && themes.toggle()">
         <tabler-icon [icon]="sunIcon" [size]="14" />
       </button>
-      <button class="theme-opt" [class.active]="themes.mode() === 'dark'" (click)="themes.mode() === 'light' && themes.toggle()">
+      <button class="theme-opt d-flex align-items-center justify-content-center" [class.active]="themes.mode() === 'dark'" (click)="themes.mode() === 'light' && themes.toggle()">
         <tabler-icon [icon]="moonIcon" [size]="14" />
       </button>
     </div>
 
     <!-- User Avatar -->
-    <div class="user-avatar">
+    <div class="user-avatar d-flex align-items-center justify-content-center position-relative">
       {{ auth.user()?.initials }}
     </div>
 
     <!-- Logout -->
-    <button class="tb-btn tb-btn--logout" (click)="logout()">
+    <button class="tb-btn tb-btn--logout d-inline-flex align-items-center" (click)="logout()">
       <tabler-icon [icon]="logoutIcon" [size]="15" />
     </button>
 

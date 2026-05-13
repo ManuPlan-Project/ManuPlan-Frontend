@@ -28,7 +28,6 @@
     "@angular/forms": "^20.3.0",
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
-    "@ng-bootstrap/ng-bootstrap": "^20.0.0",
     "@tabler/icons-angular": "^3.44.0",
     "bootstrap": "5.3",
     "rxjs": "~7.8.0",

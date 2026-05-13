@@ -1,11 +1,4 @@
-.page-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 24px;
-  gap: 16px;
-  flex-wrap: wrap;
-}
+// Bootstrap handles: d-flex, align-items-start, justify-content-between, flex-wrap, gap-3, mb-4, flex-shrink-0
 
 .page-title {
   font-size: 22px;
@@ -19,11 +12,4 @@
   font-size: 13px;
   color: var(--text-muted);
   margin: 0;
-}
-
-.page-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
 }

@@ -1,28 +1,30 @@
-<nav class="sidebar">
+<nav class="sidebar d-flex flex-column gap-2">
 
   <!-- User Card -->
-  <div class="user-card">
-    <div class="user-av">{{ auth.user()?.initials }}</div>
-    <div class="user-info">
+  <div class="user-card d-flex align-items-center gap-2 mb-2">
+    <div class="user-av flex-shrink-0 d-flex align-items-center justify-content-center">
+      {{ auth.user()?.initials }}
+    </div>
+    <div class="user-info flex-grow-1 overflow-hidden">
       <p class="user-name">{{ auth.user()?.name }}</p>
       <p class="user-role">{{ auth.user()?.role }}</p>
     </div>
   </div>
 
   <!-- Nav Items -->
-  <div class="nav-list">
+  <div class="nav-list d-flex flex-column flex-grow-1">
     @for(item of navItems; track $index) {
 
       @if(item.section) {
-        <div class="nav-section">{{ item.section }}</div>
+        <div class="nav-section d-flex align-items-center gap-2">{{ item.section }}</div>
       }
 
       @if(item.label && item.route) {
-        <a class="nav-item"
+        <a class="nav-item d-flex align-items-center gap-2"
            [routerLink]="item.route"
            routerLinkActive="active">
           <tabler-icon [icon]="item.icon" [size]="16" />
-          <span class="nav-label">{{ item.label }}</span>
+          <span class="nav-label flex-grow-1">{{ item.label }}</span>
           @if(item.badge) {
             <span class="nav-badge" [class]="'badge-' + item.badgeColor">
               {{ item.badge }}
@@ -35,13 +37,13 @@
   </div>
 
   <!-- AI Suggestions Card -->
-  <div class="ai-card">
-    <div class="ai-card-title">
+  <div class="ai-card mt-auto">
+    <div class="ai-card-title d-flex align-items-center gap-1">
       <tabler-icon [icon]="sparklesIcon" [size]="13" />
       AI Suggestions
     </div>
     <p class="ai-card-desc">3 optimizations available based on this week's runs</p>
-    <button class="ai-card-btn">
+    <button class="ai-card-btn w-100 d-flex align-items-center justify-content-center gap-1">
       <tabler-icon [icon]="boltIcon" [size]="13" />
       Review now
     </button>

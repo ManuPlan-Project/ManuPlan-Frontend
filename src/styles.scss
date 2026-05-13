@@ -51,67 +51,8 @@ html, body {
   color: var(--text-accent);
 }
 // ============================================================
-// GLOBAL MODAL OVERLAY — (position: fixed works from here)
+// GLOBAL FORM INPUT STYLES — used in modals across all pages
 // ============================================================
-// ============================================================
-// GLOBAL MODAL STYLES — document.body level pe render hota hai
-// ============================================================
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.65);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 99999;
-  padding: 16px;
-}
-
-.modal {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  width: 100%;
-  max-width: 440px;
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.modal-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  h3 {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0;
-  }
-}
-
-.modal-close {
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-
-  &:hover {
-    background: var(--bg-sidebar);
-    color: var(--text-primary);
-  }
-}
-
 .input-grp {
   display: flex;
   flex-direction: column;
@@ -126,16 +67,19 @@ html, body {
 
 .input {
   padding: 9px 12px;
-  background: var(--bg-sidebar);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--text-primary);
-  font-size: 13px;
+  background: var(--bg-sidebar) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  color: var(--text-primary) !important;
+  font-size: 13px !important;
   outline: none;
-  font-family: inherit;
+  font-family: inherit !important;
 
   &::placeholder { color: var(--text-muted); }
-  &:focus { border-color: var(--accent); }
+  &:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(99,91,255,.15) !important;
+  }
 
   option {
     background: #1e1e2e;

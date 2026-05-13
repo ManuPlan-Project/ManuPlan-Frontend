@@ -1,66 +1,71 @@
-<div class="users-page">
+<div class="users-page d-flex flex-column gap-4">
 
   <app-page-header title="User Management" subtitle="Manage users, roles and permissions">
-    <button class="btn btn-primary" (click)="openModal()">
+    <button class="btn btn-primary d-inline-flex align-items-center gap-2" (click)="openModal()">
       <tabler-icon [icon]="userPlusIcon" [size]="15" />
       Add user
     </button>
   </app-page-header>
 
-  <div class="search-wrap">
-    <tabler-icon class="search-icon" [icon]="searchIcon" [size]="15" />
+  <div class="search-wrap position-relative" style="max-width:360px">
+    <tabler-icon class="search-icon position-absolute top-50 translate-middle-y" [icon]="searchIcon" [size]="15" />
     <input
-      class="search-input"
+      class="search-input w-100 form-control"
       placeholder="Search by name, email or role..."
       [value]="searchQuery()"
       (input)="searchQuery.set($any($event.target).value); currentPage.set(1)"
     />
   </div>
 
-  <div class="card">
+  <div class="card overflow-hidden">
     @if(isLoading()) {
-      <div class="loading">Loading users...</div>
+      <div class="loading text-center p-5">Loading users...</div>
     } @else {
-      <table class="tbl">
-        <thead>
-          <tr>
-            <th>User</th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>Created</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for(user of paginatedUsers(); track user.userId) {
+      <div class="table-responsive">
+        <table class="tbl table w-100">
+          <thead>
             <tr>
-              <td>
-                <div class="user-cell">
-                  <div class="user-av">{{ user.name.substring(0,2).toUpperCase() }}</div>
-                  <div>
-                    <div class="user-name">{{ user.name }}</div>
-                    <div class="user-email">{{ user.email }}</div>
-                  </div>
-                </div>
-              </td>
-              <td><span class="role-pill">{{ user.role }}</span></td>
-              <td><app-status-badge [label]="user.status" [variant]="user.status.toLowerCase()" /></td>
-              <td class="mono-text">{{ user.createdAt | date: 'MMM d, y' }}</td>
-              <td>
-                <div class="action-btns">
-                  <button class="action-btn"
-                    (click)="updateStatus(user.userId, user.status === 'Active' ? 'Inactive' : 'Active')">
-                    <tabler-icon [icon]="shieldIcon" [size]="14" />
-                  </button>
-                  <button class="action-btn action-btn--danger" (click)="deleteUser(user.userId)">
-                    <tabler-icon [icon]="trashIcon" [size]="14" />
-                  </button>
-                </div>
-              </td>
+              <th>User</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Created</th>
+              <th>Actions</th>
             </tr>
-          }
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            @for(user of paginatedUsers(); track user.userId) {
+              <tr>
+                <td>
+                  <div class="user-cell d-flex align-items-center gap-2">
+                    <div class="user-av flex-shrink-0 d-flex align-items-center justify-content-center">
+                      {{ user.name.substring(0,2).toUpperCase() }}
+                    </div>
+                    <div>
+                      <div class="user-name fw-semibold">{{ user.name }}</div>
+                      <div class="user-email">{{ user.email }}</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="role-pill">{{ user.role }}</span></td>
+                <td><app-status-badge [label]="user.status" [variant]="user.status.toLowerCase()" /></td>
+                <td class="mono-text">{{ user.createdAt | date: 'MMM d, y' }}</td>
+                <td>
+                  <div class="action-btns d-flex gap-2">
+                    <button class="action-btn d-flex align-items-center justify-content-center"
+                      (click)="updateStatus(user.userId, user.status === 'Active' ? 'Inactive' : 'Active')">
+                      <tabler-icon [icon]="shieldIcon" [size]="14" />
+                    </button>
+                    <button class="action-btn action-btn--danger d-flex align-items-center justify-content-center"
+                      (click)="deleteUser(user.userId)">
+                      <tabler-icon [icon]="trashIcon" [size]="14" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
       <app-pagination
         [currentPage]="currentPage()"
         [totalPages]="totalPages()"
@@ -72,47 +77,38 @@
 
 </div>
 
-<!-- Modal — ng-template se document.body mein jayega -->
-<ng-template #modalTpl>
-  <div class="modal-overlay" (click)="closeModal()">
-    <div class="modal" (click)="$event.stopPropagation()">
+<!-- ── Shared Modal ───────────────────────────────────────── -->
+@if(showModal()) {
+  <app-modal title="Add new user" (closed)="closeModal()">
 
-      <div class="modal-head">
-        <h3>Add new user</h3>
-        <button class="modal-close" (click)="closeModal()">
-          <tabler-icon [icon]="closeIcon" [size]="16" />
-        </button>
-      </div>
-
-      <div class="input-grp">
-        <label class="input-l">Full name</label>
-        <input class="input" type="text" placeholder="Priya Sharma" [(ngModel)]="newUser.name" />
-      </div>
-
-      <div class="input-grp">
-        <label class="input-l">Work email</label>
-        <input class="input" type="email" placeholder="priya@company.com" [(ngModel)]="newUser.email" />
-      </div>
-
-      <div class="input-grp">
-        <label class="input-l">Password</label>
-        <input class="input" type="password" placeholder="Min 8 chars" [(ngModel)]="newUser.password" />
-      </div>
-
-      <div class="input-grp">
-        <label class="input-l">Role</label>
-        <select class="input" [(ngModel)]="newUser.role">
-          @for(role of roles; track role) {
-            <option [value]="role">{{ role }}</option>
-          }
-        </select>
-      </div>
-
-      <button class="btn btn-primary" style="width:100%; justify-content:center; margin-top:8px;" (click)="addUser()">
-        <tabler-icon [icon]="userPlusIcon" [size]="15" />
-        Create user
-      </button>
-
+    <div class="input-grp">
+      <label class="input-l">Full name</label>
+      <input class="input form-control" type="text" placeholder="Priya Sharma" [(ngModel)]="newUser.name" />
     </div>
-  </div>
-</ng-template>
+
+    <div class="input-grp">
+      <label class="input-l">Work email</label>
+      <input class="input form-control" type="email" placeholder="priya@company.com" [(ngModel)]="newUser.email" />
+    </div>
+
+    <div class="input-grp">
+      <label class="input-l">Password</label>
+      <input class="input form-control" type="password" placeholder="Min 8 chars" [(ngModel)]="newUser.password" />
+    </div>
+
+    <div class="input-grp">
+      <label class="input-l">Role</label>
+      <select class="input form-select" [(ngModel)]="newUser.role">
+        @for(role of roles; track role) {
+          <option [value]="role">{{ role }}</option>
+        }
+      </select>
+    </div>
+
+    <button class="btn btn-primary w-100 d-flex align-items-center justify-content-center gap-2" (click)="addUser()">
+      <tabler-icon [icon]="userPlusIcon" [size]="15" />
+      Create user
+    </button>
+
+  </app-modal>
+}

@@ -1,22 +1,17 @@
+// Bootstrap handles: d-flex, flex-column, gap-*, align-items-center, flex-grow-1, flex-shrink-0, overflow-hidden, mt-auto, w-100
+
 .sidebar {
   height: 100%;
   padding: 16px 12px;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 
 // User Card
 .user-card {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   padding: 11px;
   background: linear-gradient(135deg, rgba(99,91,255,.2), rgba(0,212,255,.1));
   border: 1px solid rgba(99,91,255,.3);
   border-radius: 11px;
-  margin-bottom: 8px;
   cursor: pointer;
   transition: all .3s;
 
@@ -32,17 +27,11 @@
   height: 34px;
   border-radius: 50%;
   background: linear-gradient(135deg, #FF6B6B, #FFA500);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: #fff;
   font-size: 12px;
   font-weight: 600;
-  flex-shrink: 0;
   box-shadow: 0 0 0 2px rgba(255,255,255,.15);
 }
-
-.user-info { flex: 1; min-width: 0; }
 
 .user-name {
   font-size: 12.5px;
@@ -62,12 +51,6 @@
 }
 
 // Nav
-.nav-list {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
 .nav-section {
   font-size: 10px;
   letter-spacing: 1.5px;
@@ -75,9 +58,6 @@
   padding: 14px 12px 6px;
   text-transform: uppercase;
   font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 6px;
 
   &::before {
     content: '';
@@ -86,13 +66,11 @@
     border-radius: 50%;
     background: var(--brand-primary);
     box-shadow: 0 0 6px var(--brand-primary);
+    flex-shrink: 0;
   }
 }
 
 .nav-item {
-  display: flex;
-  align-items: center;
-  gap: 11px;
   padding: 9px 12px;
   border-radius: 9px;
   font-size: 13px;
@@ -122,7 +100,6 @@
     background: rgba(99,91,255,.12);
     color: var(--text-primary);
     padding-left: 14px;
-
     &::before { height: 60%; }
   }
 
@@ -131,15 +108,9 @@
     color: var(--text-primary);
     font-weight: 600;
     padding-left: 14px;
-
-    &::before {
-      height: 70%;
-      box-shadow: 0 0 12px #635BFF;
-    }
+    &::before { height: 70%; box-shadow: 0 0 12px #635BFF; }
   }
 }
-
-.nav-label { flex: 1; }
 
 .nav-badge {
   font-size: 10px;
@@ -148,20 +119,12 @@
   font-weight: 700;
   color: #fff;
 
-  &.badge-red {
-    background: linear-gradient(135deg, #EF4444, #DC2626);
-    box-shadow: 0 0 10px rgba(239,68,68,.4);
-  }
-
-  &.badge-purple {
-    background: linear-gradient(135deg, #635BFF, #7C3AED);
-    box-shadow: 0 0 10px rgba(99,91,255,.4);
-  }
+  &.badge-red    { background: linear-gradient(135deg, #EF4444, #DC2626); box-shadow: 0 0 10px rgba(239,68,68,.4); }
+  &.badge-purple { background: linear-gradient(135deg, #635BFF, #7C3AED); box-shadow: 0 0 10px rgba(99,91,255,.4); }
 }
 
 // AI Card
 .ai-card {
-  margin-top: auto;
   padding: 13px;
   background: linear-gradient(135deg, rgba(99,91,255,.18), rgba(0,212,255,.06));
   border: 1px solid rgba(99,91,255,.3);
@@ -173,9 +136,6 @@
   color: var(--text-primary);
   font-weight: 700;
   margin: 0 0 4px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
 }
 
 .ai-card-desc {
@@ -186,7 +146,6 @@
 }
 
 .ai-card-btn {
-  width: 100%;
   height: 30px;
   background: linear-gradient(135deg, #635BFF, #7C3AED);
   color: #fff;
@@ -196,10 +155,6 @@
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
   transition: all .25s;
 
   &:hover {
