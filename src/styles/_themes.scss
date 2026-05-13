@@ -1,0 +1,48 @@
+// ============================================================
+// DARK MODE (default)
+// ============================================================
+:root {
+  --bg-page:          #070912;
+  --bg-card:          rgba(255, 255, 255, 0.05);
+  --bg-card-hover:    rgba(255, 255, 255, 0.08);
+  --bg-input:         rgba(255, 255, 255, 0.04);
+  --border:           rgba(255, 255, 255, 0.10);
+  --border-accent:    rgba(99, 91, 255, 0.30);
+  --bg-topbar:        rgba(7, 9, 18, 0.70);
+  --bg-sidebar:       linear-gradient(180deg, #0D101E, #070912);
+
+  --text-primary:     #FFFFFF;
+  --text-secondary:   #CBD5E1;
+  --text-tertiary:    #94A3B8;
+  --text-muted:       #64748B;
+  --text-accent:      #A5B4FC;
+
+  // Brand colors — same in both modes
+  --brand-primary:    #635BFF;
+  --brand-purple:     #7C3AED;
+  --brand-cyan:       #00D4FF;
+  --brand-green:      #00FFAA;
+  --status-success:   #10B981;
+  --status-warning:   #FBBF24;
+  --status-danger:    #EF4444;
+}
+
+// ============================================================
+// LIGHT MODE
+// ============================================================
+body.light {
+  --bg-page:          #FAFAFA;
+  --bg-card:          #FFFFFF;
+  --bg-card-hover:    #F9FAFB;
+  --bg-input:         #FFFFFF;
+  --border:           #E5E7EB;
+  --border-accent:    rgba(99, 91, 255, 0.40);
+  --bg-topbar:        rgba(255, 255, 255, 0.85);
+  --bg-sidebar:       linear-gradient(180deg, #FFFFFF, #FAFAFA);
+
+  --text-primary:     #0F172A;
+  --text-secondary:   #334155;
+  --text-tertiary:    #64748B;
+  --text-muted:       #94A3B8;
+  --text-accent:      #635BFF;
+}

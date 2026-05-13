@@ -1,1 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+// ============================================================
+// MANUPLAN GLOBAL STYLES
+// ============================================================
+@use './styles/tokens' as *;
+@use './styles/themes' as *;
+@use './styles/animations' as *;
+
+// ============================================================
+// GLOBAL RESETS
+// ============================================================
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ============================================================
+// UTILITY CLASSES
+// ============================================================
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.text-accent {
+  color: var(--text-accent);
+}
+
+.text-muted-custom {
+  color: var(--text-muted);
+}
+
+.text-secondary-custom {
+  color: var(--text-secondary);
+}
+
+.caps-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-accent);
+}
