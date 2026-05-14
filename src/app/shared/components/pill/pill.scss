@@ -1,0 +1,36 @@
+@use '../../../../styles/tokens' as *;
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: $radius-pill;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: $font-ui;
+  border: 1px solid transparent;
+
+  &.success {
+    background: rgba(16, 185, 129, 0.12);
+    color: #34D399;
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+
+  &.danger {
+    background: rgba(239, 68, 68, 0.12);
+    color: #F87171;
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+
+  &.warning {
+    background: rgba(251, 191, 36, 0.15);
+    color: #FCD34D;
+    border-color: rgba(251, 191, 36, 0.35);
+  }
+
+  &.info {
+    background: rgba(99, 91, 255, 0.1);
+    color: #A5B4FC;
+    border-color: rgba(99, 91, 255, 0.25);
+  }
+}

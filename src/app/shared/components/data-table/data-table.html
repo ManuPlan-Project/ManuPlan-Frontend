@@ -1,0 +1,29 @@
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        @for (col of columns; track col.key) {
+          <th>{{ col.label }}</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of rows; track $index) {
+        <tr>
+          @for (col of columns; track col.key) {
+            <td [ngClass]="{ mono: col.mono }">
+              {{ getValue(row, col.key) }}
+            </td>
+          }
+        </tr>
+      }
+      @empty {
+        <tr>
+          <td [colSpan]="columns.length" class="empty-row">
+            No data available
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

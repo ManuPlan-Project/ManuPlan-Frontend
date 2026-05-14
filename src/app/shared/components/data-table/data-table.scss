@@ -1,0 +1,53 @@
+@use '../../../../styles/tokens' as *;
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: $font-ui;
+
+  thead tr th {
+    font-size: 11px;
+    font-weight: 600;
+    color: $brand-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: $space-sm $space-md;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba(99, 91, 255, 0.04);
+    }
+
+    td {
+      font-size: 13px;
+      color: var(--text-primary);
+      padding: $space-sm $space-md;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      white-space: nowrap;
+
+      &.mono {
+        font-family: $font-mono;
+        font-size: 12px;
+        color: $brand-primary;
+      }
+    }
+  }
+
+  .empty-row {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    padding: $space-xxl $space-md;
+  }
+}

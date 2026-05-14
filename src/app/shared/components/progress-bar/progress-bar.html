@@ -1,0 +1,15 @@
+<div class="progress-wrap">
+  @if (label) {
+    <div class="progress-top">
+      <span class="progress-label">{{ label }}</span>
+      <span class="progress-value">{{ percentage }}%</span>
+    </div>
+  }
+  <div class="progress-track">
+    <div
+      class="progress-fill"
+      [ngClass]="variant"
+      [style.width.%]="percentage"
+    ></div>
+  </div>
+</div>
