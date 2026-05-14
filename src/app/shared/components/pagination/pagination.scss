@@ -1,0 +1,31 @@
+// Bootstrap handles: d-flex, align-items-center, justify-content-between, flex-wrap, gap-*, text-center
+
+.pagination {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+
+  &__info {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  &__pages {
+    font-size: 13px;
+    color: var(--text-primary);
+    min-width: 60px;
+  }
+
+  &__btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background 0.15s;
+
+    &:hover:not(:disabled) { background: var(--bg-card-hover); }
+    &:disabled { opacity: 0.35; cursor: not-allowed; }
+  }
+}

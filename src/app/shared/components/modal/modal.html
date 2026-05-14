@@ -1,0 +1,16 @@
+<div class="modal-overlay" (click)="onOverlayClick()">
+  <div class="modal-box" [style.maxWidth]="maxWidth" (click)="$event.stopPropagation()">
+
+    <!-- Header -->
+    <div class="modal-head d-flex align-items-center justify-content-between">
+      <h3 class="modal-title">{{ title }}</h3>
+      <button class="modal-close d-flex align-items-center justify-content-center" (click)="closed.emit()">
+        <tabler-icon [icon]="closeIcon" [size]="16" />
+      </button>
+    </div>
+
+    <!-- Content — projected from parent -->
+    <ng-content></ng-content>
+
+  </div>
+</div>

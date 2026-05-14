@@ -50,3 +50,84 @@ html, body {
   text-transform: uppercase;
   color: var(--text-accent);
 }
+// ============================================================
+// GLOBAL BUTTON STYLES — use across all pages
+// ============================================================
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all .25s;
+  font-family: inherit;
+  text-decoration: none;
+
+  &-primary {
+    background: linear-gradient(135deg, #635BFF 0%, #7C3AED 50%, #00D4FF 100%);
+    background-size: 200% auto;
+    color: #fff !important;
+    box-shadow: 0 4px 14px -2px rgba(99,91,255,.5);
+    animation: grad-shift 4s ease infinite;
+    &:hover { box-shadow: 0 10px 28px -4px rgba(99,91,255,.7); transform: translateY(-2px); }
+  }
+
+  &-ghost {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    &:hover { background: var(--bg-card-hover); border-color: rgba(255,255,255,.3); transform: translateY(-2px); }
+  }
+
+  &-danger {
+    background: rgba(239,68,68,.15);
+    color: #f87171;
+    border: 1px solid rgba(239,68,68,.3);
+    &:hover { background: rgba(239,68,68,.25); transform: translateY(-1px); }
+  }
+
+  &-sm { height: 30px; padding: 0 10px; font-size: 12px; border-radius: 7px; }
+  &-lg { height: 46px; padding: 0 20px; font-size: 14px; }
+}
+
+// ============================================================
+// GLOBAL FORM INPUT STYLES — used in modals across all pages
+// ============================================================
+.input-grp {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input-l {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.input {
+  padding: 9px 12px;
+  background: var(--bg-sidebar) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  color: var(--text-primary) !important;
+  font-size: 13px !important;
+  outline: none;
+  font-family: inherit !important;
+
+  &::placeholder { color: var(--text-muted); }
+  &:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(99,91,255,.15) !important;
+  }
+
+  option {
+    background: #1e1e2e;
+    color: #e2e8f0;
+  }
+}

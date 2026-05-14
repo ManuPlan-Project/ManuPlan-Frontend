@@ -1,0 +1,90 @@
+<div class="audit-page d-flex flex-column gap-4">
+
+  <app-page-header title="Audit Log" subtitle="Complete record of all system activity">
+    <button class="btn-icon-text d-flex align-items-center gap-2" (click)="fetchLogs()">
+      <tabler-icon [icon]="IconReload" [size]="16"></tabler-icon>
+      Refresh
+    </button>
+  </app-page-header>
+
+  <!-- Toolbar -->
+  <div class="toolbar d-flex align-items-center gap-3 flex-wrap">
+    <div class="search-wrap position-relative flex-grow-1" style="min-width:220px; max-width:380px">
+      <span class="search-icon position-absolute top-50 translate-middle-y">
+        <tabler-icon [icon]="IconSearch" [size]="15"></tabler-icon>
+      </span>
+      <input
+        class="search-input w-100 form-control"
+        type="text"
+        placeholder="Search by action, resource, details..."
+        [value]="searchQuery()"
+        (input)="onSearch($any($event.target).value)"
+      />
+    </div>
+
+    <select class="filter-select form-select" [value]="selectedAction()" (change)="onActionFilter($any($event.target).value)">
+      <option value="all">All Actions</option>
+      @for (a of actions.slice(1); track a) {
+        <option [value]="a">{{ a }}</option>
+      }
+    </select>
+
+    <span class="result-count ms-auto">{{ filtered().length }} entries</span>
+  </div>
+
+  <!-- Table -->
+  <div class="table-card">
+    <div class="table-responsive">
+      <table class="audit-table table w-100">
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>User ID</th>
+            <th>Action</th>
+            <th>Resource Type</th>
+            <th>Resource ID</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (isLoading()) {
+            <tr>
+              <td colspan="6" class="empty-state text-center">Loading audit logs...</td>
+            </tr>
+          } @else if (paginated().length === 0) {
+            <tr>
+              <td colspan="6" class="empty-state text-center">No entries found</td>
+            </tr>
+          } @else {
+            @for (entry of paginated(); track entry.auditId) {
+              <tr>
+                <td class="ts-cell font-mono text-nowrap">{{ formatDate(entry.timestamp) }}</td>
+                <td class="font-mono" style="font-size:11px; color: var(--text-muted)">
+                  {{ entry.userId ? entry.userId.substring(0, 8) + '...' : 'System' }}
+                </td>
+                <td>
+                  <span class="action-badge {{ getActionColor(entry.action) }}">
+                    {{ entry.action }}
+                  </span>
+                </td>
+                <td>
+                  <span class="entity-text">{{ entry.resourceType }}</span>
+                </td>
+                <td class="font-mono" style="font-size:11px">{{ entry.resourceID }}</td>
+                <td class="details-cell">{{ entry.detailsJSON }}</td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <app-pagination
+      [currentPage]="currentPage()"
+      [totalPages]="totalPages()"
+      [totalItems]="filtered().length"
+      [pageSize]="pageSize"
+      (pageChange)="currentPage.set($event)" />
+  </div>
+
+</div>

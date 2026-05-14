@@ -1,0 +1,15 @@
+// Bootstrap handles: d-flex, align-items-start, justify-content-between, flex-wrap, gap-3, mb-4, flex-shrink-0
+
+.page-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 4px;
+  letter-spacing: -0.3px;
+}
+
+.page-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}

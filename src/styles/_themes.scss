@@ -1,4 +1,35 @@
 // ============================================================
+// BOOTSTRAP 5 — CSS VARIABLE OVERRIDES (dark mode default)
+// ============================================================
+:root {
+  // Bootstrap core
+  --bs-primary:            #635BFF;
+  --bs-primary-rgb:        99, 91, 255;
+  --bs-body-font-family:   'Inter', sans-serif;
+  --bs-body-font-size:     13px;
+  --bs-body-color:         #FFFFFF;
+  --bs-body-bg:            #070912;
+  --bs-border-color:       rgba(255, 255, 255, 0.10);
+  --bs-border-radius:      8px;
+  --bs-border-radius-sm:   6px;
+  --bs-border-radius-lg:   12px;
+  --bs-border-radius-xl:   14px;
+  --bs-secondary-color:    #CBD5E1;
+  --bs-tertiary-color:     #94A3B8;
+  --bs-secondary-bg:       rgba(255, 255, 255, 0.05);
+  --bs-tertiary-bg:        rgba(255, 255, 255, 0.03);
+  --bs-emphasis-color:     #FFFFFF;
+  --bs-link-color:         #A5B4FC;
+  --bs-link-hover-color:   #C7D2FE;
+  --bs-table-color:        #FFFFFF;
+  --bs-table-bg:           transparent;
+  --bs-table-border-color: rgba(255, 255, 255, 0.10);
+  --bs-table-hover-bg:     rgba(99, 91, 255, 0.06);
+  --bs-form-control-bg:    rgba(255, 255, 255, 0.04);
+  --bs-form-control-color: #FFFFFF;
+}
+
+// ============================================================
 // DARK MODE (default)
 // ============================================================
 :root {
@@ -10,6 +41,8 @@
   --border-accent:    rgba(99, 91, 255, 0.30);
   --bg-topbar:        rgba(7, 9, 18, 0.70);
   --bg-sidebar:       linear-gradient(180deg, #0D101E, #070912);
+  --bg-hover:         rgba(99, 91, 255, 0.08);
+  --accent:           #635BFF;
 
   --text-primary:     #FFFFFF;
   --text-secondary:   #CBD5E1;
@@ -31,6 +64,20 @@
 // LIGHT MODE
 // ============================================================
 body.light {
+  // Bootstrap overrides — light mode
+  --bs-body-color:         #0F172A;
+  --bs-body-bg:            #FAFAFA;
+  --bs-border-color:       #E5E7EB;
+  --bs-secondary-color:    #334155;
+  --bs-secondary-bg:       #FFFFFF;
+  --bs-tertiary-bg:        #F9FAFB;
+  --bs-emphasis-color:     #0F172A;
+  --bs-table-color:        #0F172A;
+  --bs-table-border-color: #E5E7EB;
+  --bs-table-hover-bg:     rgba(99, 91, 255, 0.04);
+  --bs-form-control-bg:    #FFFFFF;
+  --bs-form-control-color: #0F172A;
+
   --bg-page:          #FAFAFA;
   --bg-card:          #FFFFFF;
   --bg-card-hover:    #F9FAFB;
@@ -39,6 +86,8 @@ body.light {
   --border-accent:    rgba(99, 91, 255, 0.40);
   --bg-topbar:        rgba(255, 255, 255, 0.85);
   --bg-sidebar:       linear-gradient(180deg, #FFFFFF, #FAFAFA);
+  --bg-hover:         rgba(99, 91, 255, 0.06);
+  --accent:           #635BFF;
 
   --text-primary:     #0F172A;
   --text-secondary:   #334155;

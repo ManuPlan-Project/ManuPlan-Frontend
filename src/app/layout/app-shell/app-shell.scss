@@ -1,0 +1,10 @@
+// Bootstrap handles: display flex, height, overflow, flex-grow, flex-column
+// Custom CSS only for what Bootstrap can't provide
+
+.shell-sidebar {
+  width: 240px;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  position: relative;
+  z-index: 10;
+}

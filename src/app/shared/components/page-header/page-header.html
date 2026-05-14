@@ -1,0 +1,11 @@
+<div class="page-header d-flex align-items-start justify-content-between flex-wrap gap-3 mb-4">
+  <div>
+    <h1 class="page-title">{{ title() }}</h1>
+    @if (subtitle()) {
+      <p class="page-subtitle">{{ subtitle() }}</p>
+    }
+  </div>
+  <div class="page-actions d-flex align-items-center gap-2 flex-shrink-0">
+    <ng-content></ng-content>
+  </div>
+</div>

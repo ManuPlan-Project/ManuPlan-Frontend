@@ -1,0 +1,159 @@
+// Bootstrap handles: d-flex, flex-column, gap-*, align-items-center, flex-wrap, position-relative/absolute,
+//                    top-50, translate-middle-y, flex-grow-1, ms-auto, table-responsive, w-100,
+//                    text-center, text-nowrap, form-control, form-select
+
+// ── Refresh Button ───────────────────────────────────────
+.btn-icon-text {
+  padding: 8px 14px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+
+  &:hover {
+    background: var(--bg-card);
+    color: var(--text-primary);
+  }
+}
+
+// ── Search ───────────────────────────────────────────────
+.search-icon {
+  left: 10px;
+  color: var(--text-muted);
+}
+
+.search-input {
+  padding: 8px 12px 8px 34px;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  color: var(--text-primary) !important;
+  font-size: 13px;
+  outline: none;
+
+  &::placeholder { color: var(--text-muted); }
+  &:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(99,91,255,.15) !important;
+  }
+}
+
+// ── Filter Select ────────────────────────────────────────
+.filter-select {
+  padding: 8px 32px 8px 12px;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  color: var(--text-primary) !important;
+  font-size: 13px;
+  cursor: pointer;
+
+  &:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(99,91,255,.15) !important;
+  }
+
+  option {
+    background: #1e1e2e;
+    color: #e2e8f0;
+  }
+}
+
+.result-count {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+// ── Table Card ───────────────────────────────────────────
+.table-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.audit-table {
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 0;
+
+  thead {
+    background: var(--bg-sidebar);
+
+    th {
+      padding: 11px 14px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border) !important;
+      border-top: none !important;
+    }
+  }
+
+  tbody tr {
+    border-top: 1px solid var(--border);
+    transition: background 0.15s;
+    &:hover { background: var(--bg-sidebar); }
+  }
+
+  td {
+    padding: 11px 14px;
+    color: var(--text-primary);
+    vertical-align: middle;
+    border: none !important;
+  }
+}
+
+// ── Cells ────────────────────────────────────────────────
+.ts-cell {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.entity-text {
+  display: block;
+  font-weight: 500;
+}
+
+.details-cell {
+  max-width: 260px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+// ── Action Badges ────────────────────────────────────────
+.action-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+
+  &.green  { background: rgba(34,197,94,.12);   color: #4ade80; }
+  &.gray   { background: rgba(148,163,184,.12);  color: #94a3b8; }
+  &.blue   { background: rgba(59,130,246,.12);   color: #60a5fa; }
+  &.yellow { background: rgba(234,179,8,.12);    color: #facc15; }
+  &.red    { background: rgba(239,68,68,.12);    color: #f87171; }
+  &.purple { background: rgba(99,102,241,.12);   color: #818cf8; }
+  &.orange { background: rgba(251,146,60,.12);   color: #fb923c; }
+}
+
+// ── Empty State ──────────────────────────────────────────
+.empty-state {
+  padding: 48px 24px;
+  color: var(--text-muted);
+  font-size: 13px;
+}

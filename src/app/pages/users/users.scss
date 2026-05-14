@@ -1,0 +1,136 @@
+// Bootstrap handles: d-flex, flex-column, gap-*, align-items-center, position-relative/absolute,
+//                    top-50, translate-middle-y, flex-shrink-0, fw-semibold, w-100, overflow-hidden,
+//                    table-responsive, text-center, p-5, form-control, form-select
+
+// ── Search ───────────────────────────────────────────────
+.search-icon {
+  left: 10px;
+  color: var(--text-muted);
+}
+
+.search-input {
+  padding: 8px 12px 8px 34px;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  color: var(--text-primary) !important;
+  font-size: 13px;
+  outline: none;
+
+  &::placeholder { color: var(--text-muted); }
+  &:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(99,91,255,.15) !important;
+  }
+}
+
+// ── Table Card ───────────────────────────────────────────
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.loading {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.tbl {
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 0;
+
+  thead {
+    background: var(--bg-sidebar);
+
+    th {
+      padding: 11px 16px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+      border-bottom: 1px solid var(--border) !important;
+      border-top: none !important;
+    }
+  }
+
+  tbody tr {
+    border-top: 1px solid var(--border);
+    transition: background 0.15s;
+    &:hover { background: var(--bg-sidebar); }
+  }
+
+  td {
+    padding: 12px 16px;
+    color: var(--text-primary);
+    vertical-align: middle;
+    border: none !important;
+  }
+}
+
+// ── User Cell ────────────────────────────────────────────
+.user-av {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.user-name {
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.user-email {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+// ── Role Pill ────────────────────────────────────────────
+.role-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(99, 102, 241, 0.12);
+  color: #818cf8;
+}
+
+.mono-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+// ── Action Buttons ───────────────────────────────────────
+.action-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+
+  &:hover {
+    background: var(--bg-sidebar);
+    color: var(--text-primary);
+  }
+
+  &--danger:hover {
+    background: rgba(239, 68, 68, .12);
+    color: #f87171;
+    border-color: rgba(239, 68, 68, .3);
+  }
+}
+
+// .btn styles are global — see src/styles.scss

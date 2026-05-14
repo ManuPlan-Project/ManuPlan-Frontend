@@ -1,0 +1,139 @@
+<div class="login-page">
+
+  <!-- Background effects -->
+  <div class="bg-orb-1"></div>
+  <div class="bg-orb-2"></div>
+  <div class="grid-bg"></div>
+
+  <div class="login-grid">
+
+    <!-- LEFT SIDE -->
+    <div class="login-left d-flex flex-column justify-content-between">
+
+      <!-- Brand -->
+      <div class="login-brand d-flex align-items-center gap-3">
+        <div class="login-mark"></div>
+        <span class="login-name">ManuPlan</span>
+      </div>
+
+      <!-- Hero -->
+      <div class="login-hero">
+        <span class="login-tag">Centeralized working environment</span>
+        <h1 class="login-h1">Production planning,<br/><span>reimagined.</span></h1>
+        <p class="login-p">Modern MRP, lot-level traceability, and audit-ready compliance. Built for the factories of tomorrow.</p>
+      </div>
+
+      <!-- Features -->
+      <div class="features d-flex flex-column gap-3">
+        <div class="feat d-flex align-items-start gap-3">
+          <div class="feat-icon f1 d-flex align-items-center justify-content-center flex-shrink-0">
+            <tabler-icon [icon]="sparklesIcon" [size]="16" />
+          </div>
+          <div class="feat-content">
+            <p class="feat-t">Real-time MRP</p>
+            <p class="feat-d">Deterministic netting in seconds</p>
+          </div>
+        </div>
+        <div class="feat d-flex align-items-start gap-3">
+          <div class="feat-icon f2 d-flex align-items-center justify-content-center flex-shrink-0">
+            <tabler-icon [icon]="mailIcon" [size]="16" />
+          </div>
+          <div class="feat-content">
+            <p class="feat-t">Lot-level traceability</p>
+            <p class="feat-d">Forward and backward trace, any batch</p>
+          </div>
+        </div>
+        <div class="feat d-flex align-items-start gap-3">
+          <div class="feat-icon f3 d-flex align-items-center justify-content-center flex-shrink-0">
+            <tabler-icon [icon]="keyIcon" [size]="16" />
+          </div>
+          <div class="feat-content">
+            <p class="feat-t">ISO &amp; FDA audit-ready</p>
+            <p class="feat-d">One-click compliance package export</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="login-stats d-flex gap-4">
+        <div class="stat">
+          <div class="stat-v">0%</div>
+          <div class="stat-l">UPTIME SLA</div>
+        </div>
+        <div class="stat">
+          <div class="stat-v">0+</div>
+          <div class="stat-l">PLANTS LIVE</div>
+        </div>
+        <div class="stat">
+          <div class="stat-v">0+</div>
+          <div class="stat-l">WOs PROCESSED</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="login-right d-flex flex-column justify-content-center">
+
+      <div class="form-header mb-4">
+        <h2>Welcome back</h2>
+        <p>Sign in to your ManuPlan workspace</p>
+      </div>
+
+      <!-- Email -->
+      <div class="input-grp mb-3">
+        <label class="input-l">Work email</label>
+        <div class="input-wrap position-relative">
+          <tabler-icon class="input-icon position-absolute" [icon]="mailIcon" [size]="16" />
+          <input class="input form-control w-100" type="email" placeholder="priya@company.com" [(ngModel)]="email" />
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="input-grp mb-3">
+        <label class="input-l">Password</label>
+        <div class="input-wrap position-relative">
+          <tabler-icon class="input-icon position-absolute" [icon]="lockIcon" [size]="16" />
+          <input class="input form-control w-100" [type]="showPassword() ? 'text' : 'password'" placeholder="••••••••••" [(ngModel)]="password" />
+          <button class="input-eye position-absolute d-flex align-items-center" (click)="togglePassword()">
+            @if(showPassword()) {
+              <tabler-icon [icon]="eyeOffIcon" [size]="16" />
+            } @else {
+              <tabler-icon [icon]="eyeIcon" [size]="16" />
+            }
+          </button>
+        </div>
+      </div>
+
+      <!-- Remember me + Forgot -->
+      <div class="form-row d-flex align-items-center justify-content-between mb-4">
+        <label class="check d-flex align-items-center gap-2">
+          <input type="checkbox" [checked]="rememberMe()" />
+          <span class="check-box d-flex align-items-center justify-content-center"></span>
+          Remember me
+        </label>
+        <a class="link" href="#">Forgot password?</a>
+      </div>
+
+      @if(errorMsg()) {
+        <div class="error-msg mb-3">{{ errorMsg() }}</div>
+      }
+
+      <!-- Submit -->
+      <button class="submit-btn w-100 d-flex align-items-center justify-content-center gap-2" (click)="onSubmit()">
+        Sign in
+        <tabler-icon [icon]="arrowIcon" [size]="16" />
+      </button>
+
+      <!-- Divider -->
+      <div class="divider my-4">OR</div>
+
+      <!-- SSO -->
+      <button class="sso-btn w-100 d-flex align-items-center justify-content-center gap-2">
+        <tabler-icon [icon]="keyIcon" [size]="16" />
+        Continue with SSO
+      </button>
+
+    </div>
+  </div>
+</div>
